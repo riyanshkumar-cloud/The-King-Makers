@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Viora</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#faf7f2;
+    color:#24191d;
+}
+
+/* NAVBAR */
+nav{
+    height:75px;
+    background:#35131d;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-family:Georgia,serif;
+    font-size:27px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#d4a15a;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav ul a{
+    color:white;
+    text-decoration:none;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.nav-buttons button{
+    background:white;
+    border:0;
+    border-radius:9px;
+    padding:10px 13px;
+    cursor:pointer;
+}
+
+/* HERO */
+.hero{
+    min-height:560px;
+    display:flex;
+    align-items:center;
+    padding:60px 8%;
+    color:white;
+
+    background:
+    linear-gradient(90deg,rgba(42,10,18,.95),rgba(42,10,18,.35)),
+    url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=85");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.hero small{
+    color:#d4a15a;
+    letter-spacing:4px;
+    font-weight:bold;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:70px;
+    line-height:1;
+    margin:20px 0;
+}
+
+.hero h1 span{
+    color:#d4a15a;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+    color:#eee;
+}
+
+.hero button{
+    margin-top:30px;
+    padding:15px 25px;
+    border:0;
+    background:#d4a15a;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* SEARCH */
+.search-box{
+    width:85%;
+    margin:-30px auto 50px;
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 10px 30px #0002;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+/* MAIN */
+.container{
+    width:85%;
+    max-width:1200px;
+    margin:auto;
+}
+
+section{
+    margin-bottom:75px;
+}
+
+.section-title{
+    margin-bottom:28px;
+}
+
+.section-title small{
+    color:#9b6a32;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.section-title h2{
+    font-family:Georgia,serif;
+    font-size:40px;
+    margin-top:8px;
+}
+
+/* CATEGORIES */
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.category{
+    height:180px;
+    border-radius:13px;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+}
+
+.category img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.category:hover img{
+    transform:scale(1.08);
+}
+
+.category div{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:20px;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    background:linear-gradient(transparent,#000b);
+}
+
+/* PRODUCTS */
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:13px;
+    overflow:hidden;
+    box-shadow:0 5px 20px #0001;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card-img{
+    height:250px;
+}
+
+.card-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.card-info{
+    padding:18px;
+}
+
+.card-info small{
+    color:#9b6a32;
+    font-weight:bold;
+}
+
+.card-info h3{
+    font-family:Georgia,serif;
+    font-size:22px;
+    margin:8px 0;
+}
+
+.card-info p{
+    color:#777;
+    font-size:14px;
+}
+
+.rating{
+    color:#b47d35;
+    margin:10px 0;
+}
+
+.card-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price{
+    font-weight:bold;
+}
+
+.add{
+    background:#35131d;
+    color:white;
+    border:0;
+    padding:9px 13px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+/* STORES */
+.stores{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.store{
+    background:white;
+    padding:25px;
+    border-radius:13px;
+    border:1px solid #e5ddd3;
+}
+
+.store h3{
+    font-family:Georgia,serif;
+    font-size:23px;
+    margin:10px 0;
+}
+
+.store p{
+    color:#777;
+}
+
+/* OFFERS */
+.offers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.offer{
+    padding:30px;
+    border-radius:15px;
+    background:#ead9c0;
+}
+
+.offer:nth-child(2){
+    background:#ead5db;
+}
+
+.offer:nth-child(3){
+    background:#ddd8c8;
+}
+
+.offer h3{
+    font-family:Georgia,serif;
+    font-size:25px;
+    margin:12px 0;
+}
+
+/* REVIEWS */
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.review{
+    background:white;
+    padding:23px;
+    border-radius:13px;
+    border:1px solid #e5ddd3;
+}
+
+.stars{
+    color:#b47d35;
+    margin-bottom:10px;
+}
+
+.review p{
+    color:#666;
+    line-height:1.6;
+}
+
+/* ABOUT */
+.about{
+    background:#35131d;
+    color:white;
+    padding:70px 8%;
+    display:flex;
+    gap:50px;
+    align-items:center;
+}
+
+.about img{
+    width:45%;
+    border-radius:12px;
+}
+
+.about-text{
+    max-width:550px;
+}
+
+.about-text h2{
+    font-family:Georgia,serif;
+    font-size:43px;
+    margin:15px 0;
+}
+
+.about-text p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+/* FOOTER */
+footer{
+    background:#210c12;
+    color:#aaa;
+    padding:35px 7%;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .categories,
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stores,
+    .offers,
+    .reviews{
+        grid-template-columns:1fr;
+    }
+
+    .about{
+        flex-direction:column;
+    }
+
+    .about img{
+        width:100%;
+    }
+}
+
+@media(max-width:550px){
+
+    .hero{
+        padding:50px 6%;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .container{
+        width:92%;
+    }
+
+    .categories,
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="logo">
+VIORA <span>✦</span>
+</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#explore">Explore</a></li>
+<li><a href="#products">Collection</a></li>
+<li><a href="#stores">Stores</a></li>
+</ul>
+
+<div class="nav-buttons">
+<button>📍</button>
+<button>🛒 <span id="cartCount">0</span></button>
+<button>👤</button>
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<small>VIORA COLLECTION</small>
+
+<h1>
+Discover the
+<span>world of wine.</span>
+</h1>
+
+<p>
+Explore wines, regions, grapes and tasting notes
+through a beautifully designed catalogue.
+</p>
+
+<button onclick="document.getElementById('products').scrollIntoView()">
+Explore Collection →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="🔍 Search wines, grapes or regions..."
+onkeyup="searchProducts()"
+>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- CATEGORIES -->
+
+<section id="explore">
+
+<div class="section-title">
+
+<small>EXPLORE</small>
+
+<h2>Browse by style</h2>
+
+</div>
+
+<div class="categories">
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1586370434639-0fe43b2d32d6?auto=format&fit=crop&w=800&q=80">
+<div>Red Wine</div>
+</div>
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1566754436899-1d4c3c9a5b39?auto=format&fit=crop&w=800&q=80">
+<div>White Wine</div>
+</div>
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1558001373-7b93ee48ffa0?auto=format&fit=crop&w=800&q=80">
+<div>Rosé</div>
+</div>
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1598306442928-4d7b1a7b7f2c?auto=format&fit=crop&w=800&q=80">
+<div>Sparkling</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="products">
+
+<div class="section-title">
+
+<small>FEATURED</small>
+
+<h2>Our Collection</h2>
+
+</div>
+
+<div class="products">
+
+
+<div class="card" data-name="cabernet sauvignon red nashik">
+
+<div class="card-img">
+<img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=700&q=80">
+</div>
+
+<div class="card-info">
+
+<small>RED • INDIA</small>
+
+<h3>Cabernet Sauvignon</h3>
+
+<p>Nashik · Rich & structured</p>
+
+<div class="rating">★★★★★</div>
+
+<div class="card-bottom">
+<span class="price">₹1,299</span>
+
+<button class="add" onclick="addCart()">
+Add
+</button>
+</div>
+
+</div>
+</div>
+
+
+<div class="card" data-name="sauvignon blanc white new zealand">
+
+<div class="card-img">
+<img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=700&q=80">
+</div>
+
+<div class="card-info">
+
+<small>WHITE • NEW ZEALAND</small>
+
+<h3>Sauvignon Blanc</h3>
+
+<p>Marlborough · Fresh & crisp</p>
+
+<div class="rating">★★★★☆</div>
+
+<div class="card-bottom">
+<span class="price">₹1,099</span>
+
+<button class="add" onclick="addCart()">
+Add
+</button>
+</div>
+
+</div>
+</div>
+
+
+<div class="card" data-name="merlot red france">
+
+<div class="card-img">
+<img src="https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?auto=format&fit=crop&w=700&q=80">
+</div>
+
+<div class="card-info">
+
+<small>RED • FRANCE</small>
+
+<h3>Merlot Estate</h3>
+
+<p>Bordeaux · Smooth & fruity</p>
+
+<div class="rating">★★★★★</div>
+
+<div class="card-bottom">
+<span class="price">₹1,499</span>
+
+<button class="add" onclick="addCart()">
+Add
+</button>
+
+</div>
+</div>
+</div>
+
+
+<div class="card" data-name="provence rose france">
+
+<div class="card-img">
+<img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=700&q=80">
+</div>
+
+<div class="card-info">
+
+<small>ROSÉ • FRANCE</small>
+
+<h3>Provence Rosé</h3>
+
+<p>Provence · Light & floral</p>
+
+<div class="rating">★★★★☆</div>
+
+<div class="card-bottom">
+
+<span class="price">₹1,199</span>
+
+<button class="add" onclick="addCart()">
+Add
+</button>
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- STORES -->
+
+<section id="stores">
+
+<div class="section-title">
+
+<small>LOCATIONS</small>
+
+<h2>Find a Store</h2>
+
+</div>
+
+<div class="stores">
+
+<div class="store">
+
+📍
+
+<h3>Dolphin Central</h3>
+
+<p>Main Market · 2.4 km</p>
+
+<br>
+
+<strong>Open today</strong>
+
+</div>
+
+
+<div class="store">
+
+📍
+
+<h3>Dolphin Select</h3>
+
+<p>City Centre · 4.1 km</p>
+
+<br>
+
+<strong>Open today</strong>
+
+</div>
+
+
+<div class="store">
+
+📍
+
+<h3>Dolphin Cellar</h3>
+
+<p>High Street · 6.8 km</p>
+
+<br>
+
+<strong>Open today</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OFFERS -->
+
+<section>
+
+<div class="section-title">
+
+<small>HIGHLIGHTS</small>
+
+<h2>Offers & Discoveries</h2>
+
+</div>
+
+<div class="offers">
+
+<div class="offer">
+
+01
+
+<h3>Explore India</h3>
+
+<p>
+Discover Indian wine regions and grape varieties.
+</p>
+
+</div>
+
+
+<div class="offer">
+
+02
+
+<h3>Weekend Picks</h3>
+
+<p>
+Explore our rotating selection of featured wines.
+</p>
+
+</div>
+
+
+<div class="offer">
+
+03
+
+<h3>Wine Guide</h3>
+
+<p>
+Learn about grapes, regions and different wine styles.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section>
+
+<div class="section-title">
+
+<small>COMMUNITY</small>
+
+<h2>Customer Reviews</h2>
+
+</div>
+
+<div class="reviews">
+
+<div class="review">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“Beautiful catalogue and very easy to explore.”
+</p>
+
+<br>
+
+<strong>— A.</strong>
+
+</div>
+
+
+<div class="review">
+
+<div class="stars">
+★★★★☆
+</div>
+
+<p>
+“The region information makes discovering wines fun.”
+</p>
+
+<br>
+
+<strong>— R.</strong>
+
+</div>
+
+
+<div class="review">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“Clean design and great photography.”
+</p>
+
+<br>
+
+<strong>— K.</strong>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section class="about">
+
+<img src="https://images.unsplash.com/photo-1470158499416-75be9aa0c4ea?auto=format&fit=crop&w=1000&q=80">
+
+<div class="about-text">
+
+<small>ABOUT VIORA</small>
+
+<h2>
+A modern way to explore wine.
+</h2>
+
+<p>
+Discover grape varieties, wine regions and tasting
+profiles through a simple and premium experience.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div>
+<strong>VIORA ✦</strong>
+<br>
+<span>Premium wine discovery</span>
+</div>
+
+<div>
+© 2026 Viora
+</div>
+
+</footer>
+
+
+<script>
+
+let cart=0;
+
+function addCart(){
+
+cart++;
+
+document.getElementById("cartCount").innerText=cart;
+
+alert("Added to demo cart!");
+
+}
+
+
+function searchProducts(){
+
+let input=
+document
+.getElementById("search")
+.value
+.toLowerCase();
+
+let cards=
+document
+.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let name=
+card
+.getAttribute("data-name")
+.toLowerCase();
+
+if(name.includes(input)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
