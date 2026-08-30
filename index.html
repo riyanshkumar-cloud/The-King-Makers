@@ -2,20 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>The King Makers</title>
 
 <style>
 
-/* =========================
-   RESET
-========================= */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+:root{
+    --wine:#4a101e;
+    --wine2:#701f32;
+    --gold:#b8863b;
+    --cream:#f8f4ef;
+    --white:#fff;
+    --dark:#211015;
+    --text:#24191c;
+    --muted:#777;
+    --border:#e5ddd5;
+    --green:#286c49;
 }
 
 html{
@@ -24,12 +33,13 @@ html{
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#faf7f2;
-    color:#24191d;
+    background:var(--cream);
+    color:var(--text);
 }
 
 button,
-input{
+input,
+select{
     font-family:inherit;
 }
 
@@ -37,56 +47,47 @@ button{
     cursor:pointer;
 }
 
-/* =========================
-   COLORS
-========================= */
-
-:root{
-    --dark:#270d15;
-    --wine:#481522;
-    --wine-light:#691e31;
-    --gold:#d0a05b;
-    --cream:#faf7f2;
-    --white:#ffffff;
-    --muted:#77706e;
-    --border:#e4dad0;
-}
-
-/* =========================
+/* =================================
    TOP BAR
-========================= */
+================================= */
 
 .topbar{
+    height:38px;
     background:var(--dark);
     color:white;
-    text-align:center;
-    padding:9px 15px;
-    font-size:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:13px;
+    letter-spacing:.4px;
 }
 
-/* =========================
+/* =================================
    NAVIGATION
-========================= */
+================================= */
 
 nav{
-    min-height:76px;
+    height:82px;
     background:white;
+
     border-bottom:1px solid var(--border);
 
     display:flex;
     align-items:center;
 
-    padding:12px 5%;
-    gap:25px;
+    padding:0 5%;
+    gap:35px;
 
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
 }
 
 .logo{
     font-family:Georgia,serif;
-    font-size:24px;
+    font-size:25px;
     font-weight:bold;
     color:var(--wine);
     white-space:nowrap;
@@ -96,82 +97,71 @@ nav{
     color:var(--gold);
 }
 
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#321d22;
+    text-decoration:none;
+    font-size:14px;
+}
+
 .nav-search{
-    flex:1;
-    max-width:560px;
+    margin-left:auto;
     position:relative;
+    width:270px;
 }
 
 .nav-search input{
     width:100%;
-    padding:14px 45px 14px 17px;
+    padding:12px 40px 12px 15px;
 
     border:1px solid var(--border);
-    border-radius:11px;
+    border-radius:9px;
 
-    background:#fafafa;
     outline:none;
-    font-size:15px;
 }
 
-.nav-search-icon{
+.nav-search span{
     position:absolute;
-    right:15px;
-    top:11px;
-    font-size:21px;
+    right:14px;
+    top:10px;
 }
 
-.nav-buttons{
-    margin-left:auto;
-    display:flex;
-    gap:8px;
-}
-
-.nav-btn{
-    min-height:43px;
-    border:1px solid var(--border);
-    background:white;
-    border-radius:10px;
-    padding:9px 12px;
-}
-
-.cart-count{
-    display:inline-grid;
-    place-items:center;
-
-    min-width:20px;
-    height:20px;
-
-    padding:0 5px;
-
+.nav-cart{
     background:var(--wine);
     color:white;
 
-    border-radius:50%;
-    font-size:11px;
+    border:0;
+    border-radius:9px;
+
+    padding:12px 15px;
 }
 
-/* =========================
+/* =================================
    HERO
-========================= */
+================================= */
 
 .hero{
-    min-height:570px;
+    min-height:500px;
 
     display:flex;
     align-items:center;
 
-    padding:70px 8%;
+    padding:70px 7%;
 
     color:white;
 
     background:
     linear-gradient(
         90deg,
-        rgba(35,8,15,.95),
-        rgba(35,8,15,.42)
+        rgba(15,3,7,.95),
+        rgba(15,3,7,.35)
     ),
-    url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=85");
+    url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=90");
 
     background-size:cover;
     background-position:center;
@@ -181,190 +171,103 @@ nav{
     max-width:680px;
 }
 
-.hero-small{
-    color:var(--gold);
-    font-size:12px;
+.hero small{
+    color:#d1a157;
     letter-spacing:4px;
     font-weight:bold;
 }
 
 .hero h1{
     font-family:Georgia,serif;
-    font-size:clamp(48px,7vw,78px);
-    line-height:.98;
+    font-size:clamp(45px,6vw,72px);
+    line-height:1;
+
     margin:20px 0;
 }
 
 .hero h1 span{
-    color:var(--gold);
+    color:#d1a157;
 }
 
 .hero p{
-    max-width:570px;
     color:#eee;
     font-size:18px;
     line-height:1.7;
+    max-width:580px;
 }
 
-.hero-button{
-    margin-top:30px;
+.hero button{
+    margin-top:28px;
 
-    padding:15px 25px;
+    padding:14px 24px;
 
     border:0;
     border-radius:8px;
 
-    background:var(--gold);
-    color:#25171a;
+    background:#c99a51;
+    color:#241518;
 
     font-weight:bold;
 }
 
-/* =========================
-   SEARCH FLOAT
-========================= */
-
-.search-area{
-    width:85%;
-    margin:-32px auto 55px;
-
-    background:white;
-
-    padding:18px;
-
-    border-radius:13px;
-
-    box-shadow:0 12px 35px #0002;
-
-    position:relative;
-    z-index:5;
-}
-
-.big-search{
-    width:100%;
-
-    padding:16px 18px;
-
-    border:1px solid var(--border);
-    border-radius:9px;
-
-    outline:none;
-
-    font-size:16px;
-}
-
-/* =========================
-   GENERAL
-========================= */
+/* =================================
+   CONTAINER
+================================= */
 
 .container{
-    width:85%;
-    max-width:1200px;
+    width:86%;
+    max-width:1250px;
     margin:auto;
 }
 
 section{
-    margin-bottom:80px;
+    padding:70px 0;
 }
 
-.section-heading{
-    margin-bottom:28px;
+.heading{
+    margin-bottom:30px;
 }
 
-.section-heading small{
-    color:#a17436;
+.heading small{
+    color:var(--gold);
     font-weight:bold;
     letter-spacing:2px;
 }
 
-.section-heading h2{
+.heading h2{
     font-family:Georgia,serif;
-    font-size:42px;
+    font-size:40px;
     margin-top:8px;
 }
 
-.section-heading p{
+.heading p{
     color:var(--muted);
     margin-top:8px;
 }
 
-/* =========================
-   CATEGORIES
-========================= */
-
-.categories{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.category{
-    height:180px;
-
-    position:relative;
-    overflow:hidden;
-
-    border-radius:14px;
-}
-
-.category img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    transition:.3s;
-}
-
-.category:hover img{
-    transform:scale(1.08);
-}
-
-.category-name{
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    padding:20px;
-
-    color:white;
-
-    font-size:20px;
-    font-weight:bold;
-
-    background:
-    linear-gradient(
-        transparent,
-        rgba(0,0,0,.8)
-    );
-}
-
-/* =========================
-   FILTERS
-========================= */
+/* =================================
+   PRODUCTS
+================================= */
 
 .filters{
     display:flex;
-    gap:9px;
-
-    overflow-x:auto;
+    gap:10px;
 
     margin-bottom:25px;
-    padding-bottom:4px;
+
+    overflow:auto;
 }
 
 .filter{
-    white-space:nowrap;
-
-    padding:10px 17px;
-
-    border-radius:50px;
+    background:white;
 
     border:1px solid var(--border);
 
-    background:white;
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    white-space:nowrap;
 }
 
 .filter.active{
@@ -372,17 +275,13 @@ section{
     color:white;
 }
 
-/* =========================
-   PRODUCTS
-========================= */
-
 .products{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:20px;
 }
 
-.card{
+.product{
     background:white;
 
     border:1px solid var(--border);
@@ -391,135 +290,105 @@ section{
 
     overflow:hidden;
 
-    box-shadow:0 5px 20px #0000000d;
-
-    transition:.25s;
+    transition:.2s;
 }
 
-.card:hover{
-    transform:translateY(-6px);
+.product:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px #0001;
 }
 
-.card-image{
-    height:245px;
+.product-img{
+    height:270px;
+    background:#eee;
 
     position:relative;
-
-    background:#eee5da;
 }
 
-.card-image img{
+.product-img img{
     width:100%;
     height:100%;
-
     object-fit:cover;
 }
 
-.country{
+.product-type{
     position:absolute;
 
-    top:12px;
     left:12px;
-
-    background:white;
+    top:12px;
 
     padding:6px 9px;
 
-    border-radius:7px;
+    border-radius:6px;
+
+    background:white;
+
+    color:var(--wine);
 
     font-size:11px;
     font-weight:bold;
 }
 
-.favourite{
-    position:absolute;
-
-    top:10px;
-    right:10px;
-
-    width:38px;
-    height:38px;
-
-    border:0;
-
-    border-radius:50%;
-
-    background:white;
-
-    font-size:20px;
-}
-
-.favourite.active{
-    color:#a62b48;
-}
-
-.card-info{
+.product-body{
     padding:18px;
 }
 
-.card-info small{
-    color:#98692f;
-    font-weight:bold;
-}
-
-.card-info h3{
+.product-body h3{
     font-family:Georgia,serif;
-
-    font-size:21px;
-
-    margin:8px 0;
+    font-size:22px;
+    margin:7px 0;
 }
 
-.card-info p{
+.product-body p{
     color:#777;
-
     font-size:14px;
-
     line-height:1.5;
 }
 
-.rating{
-    color:#b17d32;
-
+.stars{
+    color:#b57d30;
     margin:10px 0;
 }
 
-.card-bottom{
+.product-footer{
     display:flex;
-
+    justify-content:space-between;
     align-items:center;
 
-    justify-content:space-between;
+    margin-top:15px;
 }
 
 .price{
+    font-size:17px;
     font-weight:bold;
 }
 
-.add{
+.product button{
     background:var(--wine);
-
     color:white;
 
     border:0;
+    border-radius:7px;
 
-    padding:10px 15px;
-
-    border-radius:8px;
+    padding:9px 14px;
 }
 
-/* =========================
-   INDIAN REGIONS
-========================= */
+/* =================================
+   INDIAN WINES
+================================= */
 
-.regions{
+.indian{
+    background:white;
+}
+
+.indian-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    gap:20px;
 }
 
-.region{
-    min-height:190px;
+.indian-card{
+    min-height:210px;
 
     border-radius:15px;
 
@@ -528,156 +397,196 @@ section{
     color:white;
 
     display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-
-    background-size:cover;
-    background-position:center;
+    align-items:end;
 
     position:relative;
     overflow:hidden;
+
+    background-size:cover;
+    background-position:center;
 }
 
-.region:before{
+.indian-card:before{
     content:"";
 
     position:absolute;
-
     inset:0;
 
-    background:
-    linear-gradient(
+    background:linear-gradient(
         transparent,
         rgba(0,0,0,.85)
     );
 }
 
-.region-content{
+.indian-content{
     position:relative;
 }
 
-.region h3{
+.indian-content h3{
     font-family:Georgia,serif;
-
-    font-size:25px;
-
-    margin-top:6px;
+    font-size:27px;
 }
 
-.region p{
+.indian-content p{
+    margin-top:6px;
     color:#ddd;
+}
 
-    margin-top:5px;
+/* =================================
+   ADMIN
+================================= */
+
+.admin-section{
+    background:#f1ebe4;
+}
+
+.admin-panel{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    overflow:hidden;
+}
+
+.admin-header{
+    background:var(--dark);
+    color:white;
+
+    padding:25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+}
+
+.admin-header h2{
+    font-family:Georgia,serif;
+}
+
+.admin-header button{
+    background:#c99a51;
+    color:#201317;
+
+    border:0;
+    border-radius:8px;
+
+    padding:11px 17px;
+
+    font-weight:bold;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+
+    padding:20px;
+}
+
+.stat{
+    padding:20px;
+
+    border-radius:12px;
+
+    background:#f8f3ec;
+}
+
+.stat span{
+    color:#777;
+    font-size:13px;
+}
+
+.stat strong{
+    display:block;
+    font-size:30px;
+    margin-top:7px;
+}
+
+/* =================================
+   ADMIN TABLE
+================================= */
+
+.admin-table-wrap{
+    padding:20px;
+
+    overflow:auto;
+}
+
+.admin-table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:850px;
+}
+
+.admin-table th{
+    background:#f4eee8;
+
+    text-align:left;
+
+    padding:13px;
 
     font-size:13px;
 }
 
-/* =========================
-   STORES
-========================= */
+.admin-table td{
+    padding:13px;
 
-.stores{
+    border-bottom:1px solid var(--border);
+
+    font-size:14px;
+}
+
+.table-img{
+    width:50px;
+    height:60px;
+
+    object-fit:cover;
+
+    border-radius:6px;
+}
+
+.edit-btn{
+    background:#eee7df;
+
+    border:0;
+
+    padding:7px 10px;
+
+    border-radius:6px;
+
+    margin-right:5px;
+}
+
+.delete-btn{
+    background:#f8e3e6;
+
+    color:#9c243c;
+
+    border:0;
+
+    padding:7px 10px;
+
+    border-radius:6px;
+}
+
+/* =================================
+   WHOLESALERS
+================================= */
+
+.wholesalers{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    gap:20px;
 }
 
-.store{
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
-
-    padding:25px;
-}
-
-.store-icon{
-    font-size:29px;
-}
-
-.store h3{
-    font-family:Georgia,serif;
-
-    font-size:23px;
-
-    margin:12px 0 7px;
-}
-
-.store p{
-    color:#777;
-
-    line-height:1.5;
-}
-
-.store button{
-    margin-top:16px;
-
-    padding:10px 15px;
-
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:8px;
-}
-
-/* =========================
-   OFFERS
-========================= */
-
-.offers{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.offer{
-    padding:30px;
-
-    border-radius:15px;
-
-    background:#ead9c0;
-}
-
-.offer:nth-child(2){
-    background:#ead5dc;
-}
-
-.offer:nth-child(3){
-    background:#ddd9ca;
-}
-
-.offer-number{
-    color:#795a38;
-    font-weight:bold;
-}
-
-.offer h3{
-    font-family:Georgia,serif;
-
-    font-size:25px;
-
-    margin:12px 0;
-}
-
-.offer p{
-    color:#615856;
-
-    line-height:1.6;
-}
-
-/* =========================
-   REVIEWS
-========================= */
-
-.reviews{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.review{
+.wholesaler{
     background:white;
 
     border:1px solid var(--border);
@@ -687,115 +596,148 @@ section{
     padding:23px;
 }
 
-.stars{
-    color:#b47c32;
+.wholesaler h3{
+    font-family:Georgia,serif;
 
-    margin-bottom:12px;
+    font-size:22px;
+
+    margin-bottom:8px;
 }
 
-.review p{
-    color:#666;
+.wholesaler p{
+    color:#777;
 
-    line-height:1.6;
+    font-size:14px;
+
+    line-height:1.7;
 }
 
-/* =========================
-   ADMIN
-========================= */
+.wholesaler-status{
+    display:inline-block;
 
-.admin{
+    margin-top:12px;
+
+    background:#e5f2e9;
+
+    color:var(--green);
+
+    padding:6px 9px;
+
+    border-radius:20px;
+
+    font-size:11px;
+}
+
+/* =================================
+   MODAL
+================================= */
+
+.modal-bg{
+    position:fixed;
+
+    inset:0;
+
+    background:#0009;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:3000;
+}
+
+.modal-bg.show{
+    display:flex;
+}
+
+.modal{
     background:white;
+
+    width:min(650px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    border-radius:16px;
+
+    padding:28px;
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-top h2{
+    font-family:Georgia,serif;
+}
+
+.close{
+    border:0;
+    background:none;
+    font-size:28px;
+}
+
+.form-group{
+    margin-top:16px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:13px;
+    font-weight:bold;
+
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+
+    padding:12px;
 
     border:1px solid var(--border);
 
-    border-radius:15px;
+    border-radius:8px;
 
-    padding:25px;
+    outline:none;
 }
 
-.stats{
+.form-row{
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:1fr 1fr;
 
     gap:15px;
 }
 
-.stat{
-    background:#f5eee5;
+.save{
+    width:100%;
 
-    border-radius:11px;
+    margin-top:22px;
 
-    padding:18px;
-}
+    padding:14px;
 
-.stat span{
-    color:#777;
+    border:0;
 
-    font-size:13px;
-}
+    border-radius:8px;
 
-.stat strong{
-    display:block;
-
-    font-size:28px;
-
-    margin-top:7px;
-}
-
-/* =========================
-   ABOUT
-========================= */
-
-.about{
-    background:var(--dark);
+    background:var(--wine);
 
     color:white;
-
-    padding:75px 8%;
-
-    display:flex;
-
-    gap:55px;
-
-    align-items:center;
-}
-
-.about img{
-    width:45%;
-
-    border-radius:14px;
-}
-
-.about-text{
-    max-width:560px;
-}
-
-.about-text small{
-    color:var(--gold);
-
-    letter-spacing:2px;
 
     font-weight:bold;
 }
 
-.about-text h2{
-    font-family:Georgia,serif;
-
-    font-size:44px;
-
-    margin:15px 0;
-}
-
-.about-text p{
-    color:#ddd;
-
-    line-height:1.8;
-}
-
-/* =========================
+/* =================================
    FOOTER
-========================= */
+================================= */
 
 footer{
     background:#19090e;
@@ -815,298 +757,71 @@ footer strong{
     color:white;
 }
 
-/* =========================
-   OVERLAY
-========================= */
-
-.overlay{
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.65);
-
-    z-index:300;
-
-    display:none;
-}
-
-.overlay.show{
-    display:block;
-}
-
-/* =========================
-   CART DRAWER
-========================= */
-
-.cart-drawer{
-    position:absolute;
-
-    right:0;
-    top:0;
-
-    width:min(450px,100%);
-
-    height:100%;
-
-    background:var(--cream);
-
-    padding:25px;
-
-    overflow-y:auto;
-}
-
-.close{
-    float:right;
-
-    background:none;
-
-    border:0;
-
-    font-size:30px;
-}
-
-.cart-title{
-    font-family:Georgia,serif;
-
-    font-size:32px;
-
-    margin:35px 0 20px;
-}
-
-.cart-item{
-    display:flex;
-
-    gap:12px;
-
-    padding:14px 0;
-
-    border-bottom:1px solid var(--border);
-}
-
-.cart-item img{
-    width:65px;
-    height:75px;
-
-    object-fit:cover;
-
-    border-radius:8px;
-}
-
-.cart-item-info{
-    flex:1;
-}
-
-.cart-item-info strong{
-    display:block;
-
-    margin-bottom:5px;
-}
-
-.cart-item-info small{
-    color:#777;
-}
-
-.cart-remove{
-    border:0;
-
-    background:none;
-
-    color:#a22942;
-
-    font-size:13px;
-}
-
-.cart-total{
-    display:flex;
-
-    justify-content:space-between;
-
-    padding:20px 0;
-
-    font-size:18px;
-
-    font-weight:bold;
-}
-
-.demo-note{
-    background:#eee3d5;
-
-    padding:14px;
-
-    border-radius:9px;
-
-    color:#665b55;
-
-    font-size:12px;
-
-    line-height:1.5;
-
-    margin-bottom:15px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-    position:absolute;
-
-    inset:0;
-
-    display:grid;
-
-    place-items:center;
-
-    padding:20px;
-}
-
-.modal-box{
-    background:white;
-
-    width:min(560px,100%);
-
-    max-height:90vh;
-
-    overflow:auto;
-
-    border-radius:18px;
-
-    padding:28px;
-}
-
-.modal-box h2{
-    font-family:Georgia,serif;
-
-    font-size:34px;
-
-    margin:25px 0 15px;
-}
-
-.field{
-    width:100%;
-
-    padding:13px;
-
-    border:1px solid var(--border);
-
-    border-radius:8px;
-
-    margin:7px 0 13px;
-
-    outline:none;
-}
-
-.modal-button{
-    width:100%;
-
-    padding:13px;
-
-    border:0;
-
-    border-radius:8px;
-
-    background:var(--wine);
-
-    color:white;
-
-    font-weight:bold;
-}
-
-/* =========================
-   MOBILE
-========================= */
+/* =================================
+   RESPONSIVE
+================================= */
 
 @media(max-width:1000px){
 
-    nav{
-        flex-wrap:wrap;
+    .nav-links{
+        display:none;
     }
 
-    .nav-search{
-        order:3;
-
-        flex-basis:100%;
-
-        max-width:none;
-    }
-
-    .categories,
     .products{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .regions{
+    .indian-grid,
+    .wholesalers{
         grid-template-columns:1fr 1fr;
     }
 
 }
 
-@media(max-width:700px){
+@media(max-width:650px){
+
+    nav{
+        height:auto;
+        min-height:70px;
+        padding:12px 4%;
+        flex-wrap:wrap;
+    }
 
     .logo{
         font-size:20px;
     }
 
-    nav{
-        gap:10px;
-    }
-
-    .nav-buttons{
-        margin-left:0;
+    .nav-search{
+        order:5;
+        width:100%;
+        margin:0;
     }
 
     .hero{
-        min-height:520px;
-
+        min-height:500px;
         padding:55px 6%;
     }
 
     .hero h1{
-        font-size:45px;
-    }
-
-    .hero p{
-        font-size:15px;
+        font-size:44px;
     }
 
     .container{
         width:92%;
     }
 
-    .search-area{
-        width:92%;
-    }
-
-    .categories,
     .products,
-    .stores,
-    .offers,
-    .reviews,
-    .regions{
+    .indian-grid,
+    .wholesalers{
         grid-template-columns:1fr;
-    }
-
-    .section-heading h2{
-        font-size:34px;
     }
 
     .stats{
         grid-template-columns:1fr 1fr;
     }
 
-    .about{
-        flex-direction:column;
-
-        padding:60px 6%;
-    }
-
-    .about img{
-        width:100%;
-    }
-
-    .about-text h2{
-        font-size:36px;
+    .form-row{
+        grid-template-columns:1fr;
     }
 
     footer{
@@ -1115,24 +830,9 @@ footer strong{
 
 }
 
-@media(max-width:430px){
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .nav-btn{
-        padding:8px;
-    }
-
-    .hero h1{
-        font-size:39px;
-    }
-
-}
-
 </style>
 </head>
+
 
 <body>
 
@@ -1140,7 +840,7 @@ footer strong{
 <!-- TOP BAR -->
 
 <div class="topbar">
-    THE KING MAKERS • Premium Beverage Discovery
+    👑 THE KING MAKERS • Premium Wine Collection
 </div>
 
 
@@ -1152,48 +852,45 @@ footer strong{
         👑 THE KING MAKERS <span>✦</span>
     </div>
 
+    <ul class="nav-links">
+
+        <li>
+            <a href="#collection">Wines</a>
+        </li>
+
+        <li>
+            <a href="#indian">Indian Wines</a>
+        </li>
+
+        <li>
+            <a href="#wholesalers">Wholesalers</a>
+        </li>
+
+        <li>
+            <a href="#admin">Admin</a>
+        </li>
+
+    </ul>
+
+
     <div class="nav-search">
 
         <input
-            id="navSearch"
-            type="text"
-            placeholder="Search products, grapes or regions..."
+            id="search"
+            placeholder="Search wines..."
         >
 
-        <span class="nav-search-icon">
-            🔍
-        </span>
+        <span>🔍</span>
 
     </div>
 
-    <div class="nav-buttons">
 
-        <button
-            class="nav-btn"
-            onclick="openLocation()"
-        >
-            📍
-        </button>
-
-        <button
-            class="nav-btn"
-            onclick="openCart()"
-        >
-            🛒
-            <span
-                class="cart-count"
-                id="cartCount"
-            >0</span>
-        </button>
-
-        <button
-            class="nav-btn"
-            onclick="openAccount()"
-        >
-            👤
-        </button>
-
-    </div>
+    <button
+        class="nav-cart"
+        onclick="alert('Catalogue cart — checkout functionality can be connected to a compliant backend later.')"
+    >
+        🛒 Cart
+    </button>
 
 </nav>
 
@@ -1204,25 +901,24 @@ footer strong{
 
     <div class="hero-content">
 
-        <div class="hero-small">
+        <small>
             THE KING MAKERS
-        </div>
+        </small>
 
         <h1>
-            Discover the
-            <span>world of wine.</span>
+            Discover exceptional
+            <span>wines.</span>
         </h1>
 
         <p>
-            Explore wines, grape varieties, regions and tasting
-            profiles through a modern premium catalogue.
+            Explore a carefully curated collection of wines,
+            including selections from India's growing wine regions.
         </p>
 
         <button
-            class="hero-button"
-            onclick="scrollToProducts()"
+            onclick="document.getElementById('collection').scrollIntoView()"
         >
-            Explore Collection →
+            Explore Collection
         </button>
 
     </div>
@@ -1230,118 +926,24 @@ footer strong{
 </section>
 
 
-<!-- SEARCH -->
+<!-- PRODUCTS -->
 
-<div class="search-area">
-
-    <input
-        class="big-search"
-        id="bigSearch"
-        type="text"
-        placeholder="🔍 Search Cabernet, Nashik, Chardonnay..."
-    >
-
-</div>
-
+<section id="collection">
 
 <div class="container">
 
+    <div class="heading">
 
-<!-- =========================
-     CATEGORIES
-========================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <small>EXPLORE</small>
-
-        <h2>
-            Browse by style
-        </h2>
-
-    </div>
-
-
-    <div class="categories">
-
-        <div class="category">
-
-            <img
-                src="https://images.unsplash.com/photo-1586370434639-0fe43b2d32d6?auto=format&fit=crop&w=800&q=80"
-                alt="Red wine"
-            >
-
-            <div class="category-name">
-                Red Wine
-            </div>
-
-        </div>
-
-
-        <div class="category">
-
-            <img
-                src="https://images.unsplash.com/photo-1566754436899-1d4c3c9a5b39?auto=format&fit=crop&w=800&q=80"
-                alt="White wine"
-            >
-
-            <div class="category-name">
-                White Wine
-            </div>
-
-        </div>
-
-
-        <div class="category">
-
-            <img
-                src="https://images.unsplash.com/photo-1558001373-7b93ee48ffa0?auto=format&fit=crop&w=800&q=80"
-                alt="Rose wine"
-            >
-
-            <div class="category-name">
-                Rosé
-            </div>
-
-        </div>
-
-
-        <div class="category">
-
-            <img
-                src="https://images.unsplash.com/photo-1598306442928-4d7b1a7b7f2c?auto=format&fit=crop&w=800&q=80"
-                alt="Sparkling wine"
-            >
-
-            <div class="category-name">
-                Sparkling
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PRODUCTS
-========================= -->
-
-<section id="productsSection">
-
-    <div class="section-heading">
-
-        <small>CURATED COLLECTION</small>
+        <small>
+            OUR COLLECTION
+        </small>
 
         <h2>
             Featured Wines
         </h2>
 
-        <p id="resultText">
-            Explore our catalogue
+        <p id="productCount">
+            0 products
         </p>
 
     </div>
@@ -1351,35 +953,35 @@ footer strong{
 
         <button
             class="filter active"
-            data-filter="All"
+            onclick="setFilter('All',this)"
         >
             All
         </button>
 
         <button
             class="filter"
-            data-filter="Red"
+            onclick="setFilter('Red',this)"
         >
             Red
         </button>
 
         <button
             class="filter"
-            data-filter="White"
+            onclick="setFilter('White',this)"
         >
             White
         </button>
 
         <button
             class="filter"
-            data-filter="Rosé"
+            onclick="setFilter('Rosé',this)"
         >
             Rosé
         </button>
 
         <button
             class="filter"
-            data-filter="Sparkling"
+            onclick="setFilter('Sparkling',this)"
         >
             Sparkling
         </button>
@@ -1392,42 +994,50 @@ footer strong{
         id="products"
     ></div>
 
+</div>
+
 </section>
 
 
-<!-- =========================
-     INDIAN WINE REGIONS
-========================= -->
+<!-- INDIAN WINES -->
 
-<section>
+<section
+    id="indian"
+    class="indian"
+>
 
-    <div class="section-heading">
+<div class="container">
 
-        <small>INDIA</small>
+    <div class="heading">
+
+        <small>
+            INDIA
+        </small>
 
         <h2>
             Indian Wine Regions
         </h2>
 
         <p>
-            Explore some of India's best-known wine-producing regions.
+            Discover notable wine-producing regions across India.
         </p>
 
     </div>
 
 
-    <div class="regions">
+    <div class="indian-grid">
 
 
         <div
-            class="region"
+            class="indian-card"
             style="
-            background-image:
-            url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=900&q=80');
+            background-image:url(
+            'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=900&q=85'
+            );
             "
         >
 
-            <div class="region-content">
+            <div class="indian-content">
 
                 <small>
                     MAHARASHTRA
@@ -1438,7 +1048,7 @@ footer strong{
                 </h3>
 
                 <p>
-                    Often called India's wine capital.
+                    One of India's best-known wine regions.
                 </p>
 
             </div>
@@ -1447,14 +1057,15 @@ footer strong{
 
 
         <div
-            class="region"
+            class="indian-card"
             style="
-            background-image:
-            url('https://images.unsplash.com/photo-1470158499416-75be9aa0c4ea?auto=format&fit=crop&w=900&q=80');
+            background-image:url(
+            'https://images.unsplash.com/photo-1470158499416-75be9aa0c4ea?auto=format&fit=crop&w=900&q=85'
+            );
             "
         >
 
-            <div class="region-content">
+            <div class="indian-content">
 
                 <small>
                     KARNATAKA
@@ -1465,7 +1076,7 @@ footer strong{
                 </h3>
 
                 <p>
-                    A notable Indian grape-growing region.
+                    An important grape-growing area.
                 </p>
 
             </div>
@@ -1474,14 +1085,15 @@ footer strong{
 
 
         <div
-            class="region"
+            class="indian-card"
             style="
-            background-image:
-            url('https://images.unsplash.com/photo-1464638681273-096bc3a70e43?auto=format&fit=crop&w=900&q=80');
+            background-image:url(
+            'https://images.unsplash.com/photo-1464638681273-096bc3a70e43?auto=format&fit=crop&w=900&q=85'
+            );
             "
         >
 
-            <div class="region-content">
+            <div class="indian-content">
 
                 <small>
                     MAHARASHTRA
@@ -1492,7 +1104,7 @@ footer strong{
                 </h3>
 
                 <p>
-                    Known for vineyards and wine tourism.
+                    Vineyards and wine tourism.
                 </p>
 
             </div>
@@ -1501,296 +1113,94 @@ footer strong{
 
     </div>
 
+</div>
+
 </section>
 
 
-<!-- =========================
-     STORES
-========================= -->
+<!-- WHOLESALERS -->
 
-<section>
+<section id="wholesalers">
 
-    <div class="section-heading">
+<div class="container">
 
-        <small>LOCATIONS</small>
+    <div class="heading">
+
+        <small>
+            BUSINESS NETWORK
+        </small>
 
         <h2>
-            Find a Store
+            Wholesalers
         </h2>
+
+        <p>
+            Manage your business supplier information.
+        </p>
 
     </div>
 
 
-    <div class="stores">
+    <div
+        class="wholesalers"
+        id="wholesalerList"
+    ></div>
+
+</div>
+
+</section>
 
 
-        <div class="store">
+<!-- ADMIN -->
 
-            <div class="store-icon">
-                📍
+<section
+    id="admin"
+    class="admin-section"
+>
+
+<div class="container">
+
+    <div class="admin-panel">
+
+
+        <div class="admin-header">
+
+            <div>
+
+                <h2>
+                    Product Management
+                </h2>
+
+                <p style="
+                    margin-top:5px;
+                    color:#bbb;
+                    font-size:13px;
+                ">
+                    Add, edit and remove catalogue items
+                </p>
+
             </div>
 
-            <h3>
-                King Makers Central
-            </h3>
 
-            <p>
-                Main Market
-                <br>
-                2.4 km away
-            </p>
-
-            <button onclick="openLocation()">
-                Select location
+            <button
+                onclick="openProductModal()"
+            >
+                + Add Wine
             </button>
 
         </div>
 
-
-        <div class="store">
-
-            <div class="store-icon">
-                📍
-            </div>
-
-            <h3>
-                King Makers Select
-            </h3>
-
-            <p>
-                City Centre
-                <br>
-                4.1 km away
-            </p>
-
-            <button onclick="openLocation()">
-                Select location
-            </button>
-
-        </div>
-
-
-        <div class="store">
-
-            <div class="store-icon">
-                📍
-            </div>
-
-            <h3>
-                King Makers Cellar
-            </h3>
-
-            <p>
-                High Street
-                <br>
-                6.8 km away
-            </p>
-
-            <button onclick="openLocation()">
-                Select location
-            </button>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     OFFERS
-========================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <small>HIGHLIGHTS</small>
-
-        <h2>
-            Offers & Discoveries
-        </h2>
-
-    </div>
-
-
-    <div class="offers">
-
-
-        <div class="offer">
-
-            <div class="offer-number">
-                01
-            </div>
-
-            <h3>
-                Explore India
-            </h3>
-
-            <p>
-                Discover Indian grape varieties and
-                wine-producing regions.
-            </p>
-
-        </div>
-
-
-        <div class="offer">
-
-            <div class="offer-number">
-                02
-            </div>
-
-            <h3>
-                Weekend Picks
-            </h3>
-
-            <p>
-                Explore a rotating selection of
-                featured catalogue items.
-            </p>
-
-        </div>
-
-
-        <div class="offer">
-
-            <div class="offer-number">
-                03
-            </div>
-
-            <h3>
-                Wine Guide
-            </h3>
-
-            <p>
-                Learn about grapes, regions and
-                different wine styles.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     REVIEWS
-========================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <small>COMMUNITY</small>
-
-        <h2>
-            Customer Reviews
-        </h2>
-
-    </div>
-
-
-    <div class="reviews">
-
-
-        <div class="review">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "Beautiful catalogue and very easy
-                to explore."
-            </p>
-
-            <br>
-
-            <strong>
-                — A.
-            </strong>
-
-        </div>
-
-
-        <div class="review">
-
-            <div class="stars">
-                ★★★★☆
-            </div>
-
-            <p>
-                "The region information makes
-                discovering wines interesting."
-            </p>
-
-            <br>
-
-            <strong>
-                — R.
-            </strong>
-
-        </div>
-
-
-        <div class="review">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "Clean design and great product
-                photography."
-            </p>
-
-            <br>
-
-            <strong>
-                — K.
-            </strong>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     ADMIN
-========================= -->
-
-<section>
-
-    <div class="section-heading">
-
-        <small>BUSINESS</small>
-
-        <h2>
-            Admin Dashboard
-        </h2>
-
-    </div>
-
-
-    <div class="admin">
 
         <div class="stats">
 
             <div class="stat">
 
                 <span>
-                    Products
+                    Total Products
                 </span>
 
-                <strong>
-                    128
+                <strong id="statProducts">
+                    0
                 </strong>
 
             </div>
@@ -1799,11 +1209,11 @@ footer strong{
             <div class="stat">
 
                 <span>
-                    Stores
+                    Indian Wines
                 </span>
 
-                <strong>
-                    6
+                <strong id="statIndian">
+                    0
                 </strong>
 
             </div>
@@ -1812,11 +1222,11 @@ footer strong{
             <div class="stat">
 
                 <span>
-                    Reviews
+                    Red Wines
                 </span>
 
-                <strong>
-                    842
+                <strong id="statRed">
+                    0
                 </strong>
 
             </div>
@@ -1825,59 +1235,70 @@ footer strong{
             <div class="stat">
 
                 <span>
-                    Stock Alerts
+                    Wholesalers
                 </span>
 
-                <strong>
-                    7
+                <strong id="statWholesalers">
+                    0
                 </strong>
 
             </div>
 
         </div>
 
-    </div>
 
-</section>
+        <div class="admin-table-wrap">
+
+            <table class="admin-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Image
+                        </th>
+
+                        <th>
+                            Product
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Region
+                        </th>
+
+                        <th>
+                            Price
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="adminTable"
+                ></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </div>
 
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section class="about">
-
-    <img
-        src="https://images.unsplash.com/photo-1470158499416-75be9aa0c4ea?auto=format&fit=crop&w=1000&q=80"
-        alt="Vineyard"
-    >
-
-    <div class="about-text">
-
-        <small>
-            THE KING MAKERS
-        </small>
-
-        <h2>
-            A modern way to discover wine.
-        </h2>
-
-        <p>
-            Explore grape varieties, wine regions and
-            tasting profiles through a simple,
-            premium experience.
-        </p>
-
-    </div>
-
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1889,7 +1310,7 @@ footer strong{
 
         <br><br>
 
-        Premium wine discovery platform
+        Premium wine catalogue
 
     </div>
 
@@ -1901,86 +1322,176 @@ footer strong{
 </footer>
 
 
-<!-- =========================
-     OVERLAY
-========================= -->
+<!-- PRODUCT MODAL -->
 
 <div
-    class="overlay"
-    id="overlay"
+    class="modal-bg"
+    id="productModal"
 >
 
-    <!-- CART -->
+    <div class="modal">
 
-    <div
-        class="cart-drawer"
-        id="cartDrawer"
-    >
+        <div class="modal-top">
+
+            <h2 id="modalTitle">
+                Add Wine
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeProductModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <input
+            type="hidden"
+            id="editIndex"
+        >
+
+
+        <div class="form-group">
+
+            <label>
+                Wine Name
+            </label>
+
+            <input
+                id="wineName"
+                placeholder="Example: Cabernet Reserve"
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    Type
+                </label>
+
+                <select id="wineType">
+
+                    <option>
+                        Red
+                    </option>
+
+                    <option>
+                        White
+                    </option>
+
+                    <option>
+                        Rosé
+                    </option>
+
+                    <option>
+                        Sparkling
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Price
+                </label>
+
+                <input
+                    id="winePrice"
+                    type="number"
+                    placeholder="1299"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Grape Variety
+            </label>
+
+            <input
+                id="wineGrape"
+                placeholder="Cabernet Sauvignon"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Region
+            </label>
+
+            <input
+                id="wineRegion"
+                placeholder="Nashik"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Image URL
+            </label>
+
+            <input
+                id="wineImage"
+                placeholder="https://..."
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Rating
+            </label>
+
+            <select id="wineRating">
+
+                <option>
+                    ★★★★★
+                </option>
+
+                <option>
+                    ★★★★☆
+                </option>
+
+                <option>
+                    ★★★☆☆
+                </option>
+
+                <option>
+                    ★★☆☆☆
+                </option>
+
+            </select>
+
+        </div>
+
 
         <button
-            class="close"
-            onclick="closeOverlay()"
+            class="save"
+            onclick="saveProduct()"
         >
-            ×
+            Save Product
         </button>
-
-        <div class="cart-title">
-            Your Cart
-        </div>
-
-        <div
-            id="cartItems"
-        ></div>
-
-        <div
-            id="emptyCart"
-            style="color:#777"
-        >
-            Your cart is empty.
-        </div>
-
-        <div
-            class="cart-total"
-        >
-
-            <span>
-                Items
-            </span>
-
-            <span id="cartTotal">
-                0
-            </span>
-
-        </div>
-
-        <div class="demo-note">
-            This is a catalogue/demo cart. It does not process
-            alcohol purchases, payments or delivery.
-        </div>
-
-        <button
-            class="modal-button"
-            onclick="showDemoPayment()"
-        >
-            View Payment Demo
-        </button>
-
-    </div>
-
-
-    <!-- MODAL -->
-
-    <div
-        class="modal"
-        id="modal"
-        style="display:none"
-        onclick="if(event.target===this) closeOverlay()"
-    >
-
-        <div
-            class="modal-box"
-            id="modalBox"
-        ></div>
 
     </div>
 
@@ -1989,126 +1500,140 @@ footer strong{
 
 <script>
 
-/* ==================================
-   PRODUCT DATA
-================================== */
+/* =====================================
+   DEFAULT PRODUCTS
+===================================== */
 
-const products = [
+const defaultProducts = [
 
 {
     name:"Cabernet Reserve",
-    category:"Red",
-    region:"Nashik, India",
+    type:"Red",
     grape:"Cabernet Sauvignon",
+    region:"Nashik",
+    price:1299,
     rating:"★★★★★",
-    price:"₹1,299",
-    image:"https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=700&q=80"
+    image:"https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&w=700&q=85"
 },
 
 {
     name:"Sauvignon Blanc",
-    category:"White",
-    region:"Nashik, India",
+    type:"White",
     grape:"Sauvignon Blanc",
+    region:"Nashik",
+    price:1099,
     rating:"★★★★☆",
-    price:"₹1,099",
-    image:"https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-    name:"Merlot Estate",
-    category:"Red",
-    region:"Maharashtra, India",
-    grape:"Merlot",
-    rating:"★★★★★",
-    price:"₹1,499",
-    image:"https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?auto=format&fit=crop&w=700&q=80"
+    image:"https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=700&q=85"
 },
 
 {
     name:"Indian Rosé",
-    category:"Rosé",
-    region:"Nashik, India",
+    type:"Rosé",
     grape:"Grenache Blend",
-    rating:"★★★★☆",
-    price:"₹1,199",
-    image:"https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-    name:"Chenin Blanc",
-    category:"White",
-    region:"Nashik, India",
-    grape:"Chenin Blanc",
-    rating:"★★★★☆",
-    price:"₹899",
-    image:"https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=700&q=80"
+    region:"Nashik",
+    price:1199,
+    rating:"★★★★★",
+    image:"https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=700&q=85"
 },
 
 {
     name:"Brut Sparkling",
-    category:"Sparkling",
-    region:"Maharashtra, India",
+    type:"Sparkling",
     grape:"Chardonnay Blend",
+    region:"Maharashtra",
+    price:1399,
     rating:"★★★★★",
-    price:"₹1,399",
-    image:"https://images.unsplash.com/photo-1598306442928-4d7b1a7b7f2c?auto=format&fit=crop&w=700&q=80"
+    image:"https://images.unsplash.com/photo-1598306442928-4d7b1a7b7f2c?auto=format&fit=crop&w=700&q=85"
 },
 
 {
     name:"Shiraz Reserve",
-    category:"Red",
-    region:"Nashik, India",
+    type:"Red",
     grape:"Shiraz",
+    region:"Nashik",
+    price:1249,
     rating:"★★★★☆",
-    price:"₹1,249",
-    image:"https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=700&q=80"
+    image:"https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=700&q=85"
 },
 
 {
     name:"Chardonnay Reserve",
-    category:"White",
-    region:"Karnataka, India",
+    type:"White",
     grape:"Chardonnay",
+    region:"Karnataka",
+    price:1599,
     rating:"★★★★★",
-    price:"₹1,599",
-    image:"https://images.unsplash.com/photo-1566754436899-1d4c3c9a5b39?auto=format&fit=crop&w=700&q=80"
+    image:"https://images.unsplash.com/photo-1566754436899-1d4c3c9a5b39?auto=format&fit=crop&w=700&q=85"
 }
 
 ];
 
 
-/* ==================================
-   STATE
-================================== */
+/* =====================================
+   LOAD DATA
+===================================== */
+
+let products =
+    JSON.parse(
+        localStorage.getItem("kingMakersProducts")
+    ) || defaultProducts;
+
+
+let wholesalers =
+    JSON.parse(
+        localStorage.getItem("kingMakersWholesalers")
+    ) || [
+
+        {
+            name:"King Makers Supplier Network",
+            city:"Maharashtra",
+            phone:"+91 XXXXX XXXXX",
+            status:"Active"
+        },
+
+        {
+            name:"Regional Wine Partners",
+            city:"Karnataka",
+            phone:"+91 XXXXX XXXXX",
+            status:"Active"
+        }
+
+    ];
+
 
 let currentFilter = "All";
 
-let cart = [];
 
-let favourites = new Set();
+/* =====================================
+   SAVE
+===================================== */
+
+function saveData(){
+
+    localStorage.setItem(
+        "kingMakersProducts",
+        JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+        "kingMakersWholesalers",
+        JSON.stringify(wholesalers)
+    );
+
+}
 
 
-/* ==================================
+/* =====================================
    RENDER PRODUCTS
-================================== */
+===================================== */
 
 function renderProducts(){
 
-    const navQuery =
-        document
-        .getElementById("navSearch")
-        .value
-        .toLowerCase();
-
-    const bigQuery =
-        document
-        .getElementById("bigSearch")
-        .value
-        .toLowerCase();
-
     const query =
-        bigQuery || navQuery;
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
 
 
     const filtered =
@@ -2116,18 +1641,20 @@ function renderProducts(){
 
             const matchesFilter =
                 currentFilter === "All" ||
-                product.category === currentFilter;
+                product.type === currentFilter;
+
 
             const text =
                 (
                     product.name +
                     " " +
-                    product.region +
-                    " " +
                     product.grape +
                     " " +
-                    product.category
+                    product.region +
+                    " " +
+                    product.type
                 ).toLowerCase();
+
 
             return matchesFilter &&
                    text.includes(query);
@@ -2135,112 +1662,81 @@ function renderProducts(){
         });
 
 
-    document.getElementById("resultText").innerText =
+    document
+    .getElementById("productCount")
+    .innerText =
         filtered.length +
-        " catalogue item" +
-        (filtered.length === 1 ? "" : "s");
+        " products";
 
 
-    const container =
-        document.getElementById("products");
+    document
+    .getElementById("products")
+    .innerHTML =
 
+        filtered.map(product => {
 
-    if(filtered.length === 0){
-
-        container.innerHTML = `
-            <div style="
-                grid-column:1/-1;
-                background:white;
-                padding:40px;
-                border-radius:14px;
-                text-align:center;
-                color:#777;
-            ">
-                No matching products found.
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        filtered.map((product,index) => {
-
-            const originalIndex =
+            const index =
                 products.indexOf(product);
-
-            const isFavourite =
-                favourites.has(originalIndex);
 
 
             return `
 
-            <article class="card">
+                <div class="product">
 
-                <div class="card-image">
+                    <div class="product-img">
 
-                    <img
-                        src="${product.image}"
-                        alt="${product.name}"
-                    >
-
-                    <div class="country">
-                        ${product.region}
-                    </div>
-
-
-                    <button
-                        class="favourite ${isFavourite ? "active" : ""}"
-                        onclick="toggleFavourite(${originalIndex})"
-                        aria-label="Favourite"
-                    >
-                        ${isFavourite ? "♥" : "♡"}
-                    </button>
-
-                </div>
-
-
-                <div class="card-info">
-
-                    <small>
-                        ${product.category.toUpperCase()}
-                    </small>
-
-                    <h3>
-                        ${product.name}
-                    </h3>
-
-                    <p>
-                        ${product.grape}
-                        <br>
-                        ${product.region}
-                    </p>
-
-                    <div class="rating">
-                        ${product.rating}
-                    </div>
-
-
-                    <div class="card-bottom">
-
-                        <span class="price">
-                            ${product.price}
-                        </span>
-
-                        <button
-                            class="add"
-                            onclick="addToCart(${originalIndex})"
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            onerror="this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80'"
                         >
-                            Add
-                        </button>
+
+                        <div class="product-type">
+                            ${product.type.toUpperCase()}
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-body">
+
+                        <small style="
+                            color:#a17436;
+                            font-weight:bold;
+                        ">
+                            ${product.region}
+                        </small>
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+                        <p>
+                            ${product.grape}
+                        </p>
+
+                        <div class="stars">
+                            ${product.rating}
+                        </div>
+
+
+                        <div class="product-footer">
+
+                            <span class="price">
+                                ₹${Number(product.price).toLocaleString("en-IN")}
+                            </span>
+
+                            <button
+                                onclick="catalogueMessage('${product.name.replace(/'/g,"\\'")}')"
+                            >
+                                View
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
-
-            </article>
 
             `;
 
@@ -2249,315 +1745,340 @@ function renderProducts(){
 }
 
 
-/* ==================================
-   FILTERS
-================================== */
+/* =====================================
+   FILTER
+===================================== */
 
-document
-.querySelectorAll(".filter")
-.forEach(button => {
+function setFilter(filter,button){
 
-    button.addEventListener(
-        "click",
-        function(){
-
-            document
-            .querySelectorAll(".filter")
-            .forEach(btn =>
-                btn.classList.remove("active")
-            );
+    currentFilter = filter;
 
 
-            this.classList.add("active");
-
-
-            currentFilter =
-                this.dataset.filter;
-
-
-            renderProducts();
-
-        }
+    document
+    .querySelectorAll(".filter")
+    .forEach(btn =>
+        btn.classList.remove("active")
     );
 
-});
 
+    button.classList.add("active");
 
-/* ==================================
-   SEARCH
-================================== */
-
-document
-.getElementById("navSearch")
-.addEventListener(
-    "input",
-    renderProducts
-);
-
-
-document
-.getElementById("bigSearch")
-.addEventListener(
-    "input",
-    renderProducts
-);
-
-
-/* ==================================
-   FAVOURITES
-================================== */
-
-function toggleFavourite(index){
-
-    if(favourites.has(index)){
-
-        favourites.delete(index);
-
-    }else{
-
-        favourites.add(index);
-
-    }
 
     renderProducts();
 
 }
 
 
-/* ==================================
-   ADD TO CART
-================================== */
+/* =====================================
+   SEARCH
+===================================== */
 
-function addToCart(index){
-
-    cart.push(products[index]);
-
-    updateCartCount();
-
-    openCart();
-
-}
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    renderProducts
+);
 
 
-/* ==================================
-   REMOVE CART ITEM
-================================== */
+/* =====================================
+   ADMIN TABLE
+===================================== */
 
-function removeCartItem(index){
+function renderAdmin(){
 
-    cart.splice(index,1);
-
-    updateCartCount();
-
-    renderCart();
-
-}
-
-
-/* ==================================
-   UPDATE CART COUNT
-================================== */
-
-function updateCartCount(){
-
-    document
-    .getElementById("cartCount")
-    .innerText = cart.length;
-
-}
-
-
-/* ==================================
-   OPEN CART
-================================== */
-
-function openCart(){
-
-    document
-    .getElementById("overlay")
-    .classList.add("show");
-
-
-    document
-    .getElementById("cartDrawer")
-    .style.display = "block";
-
-
-    document
-    .getElementById("modal")
-    .style.display = "none";
-
-
-    renderCart();
-
-}
-
-
-/* ==================================
-   RENDER CART
-================================== */
-
-function renderCart(){
-
-    const container =
-        document.getElementById("cartItems");
-
-    const empty =
-        document.getElementById("emptyCart");
-
-
-    if(cart.length === 0){
-
-        container.innerHTML = "";
-
-        empty.style.display = "block";
-
+    const table =
         document
-        .getElementById("cartTotal")
-        .innerText = "0";
-
-        return;
-
-    }
+        .getElementById("adminTable");
 
 
-    empty.style.display = "none";
+    table.innerHTML = products.map(
+        (product,index) => `
+
+        <tr>
+
+            <td>
+
+                <img
+                    class="table-img"
+                    src="${product.image}"
+                    onerror="this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=200&q=80'"
+                >
+
+            </td>
 
 
-    container.innerHTML =
-        cart.map((product,index) => `
-
-        <div class="cart-item">
-
-            <img
-                src="${product.image}"
-                alt="${product.name}"
-            >
-
-            <div class="cart-item-info">
+            <td>
 
                 <strong>
                     ${product.name}
                 </strong>
 
-                <small>
-                    ${product.region}
-                </small>
-
                 <br>
 
-                <small>
-                    ${product.price}
+                <small style="color:#777">
+                    ${product.grape}
                 </small>
 
-            </div>
+            </td>
 
 
-            <button
-                class="cart-remove"
-                onclick="removeCartItem(${index})"
-            >
-                Remove
-            </button>
-
-        </div>
-
-        `).join("");
+            <td>
+                ${product.type}
+            </td>
 
 
-    document
-    .getElementById("cartTotal")
-    .innerText = cart.length;
+            <td>
+                ${product.region}
+            </td>
+
+
+            <td>
+                ₹${Number(product.price).toLocaleString("en-IN")}
+            </td>
+
+
+            <td>
+
+                <button
+                    class="edit-btn"
+                    onclick="editProduct(${index})"
+                >
+                    ✏️ Edit
+                </button>
+
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteProduct(${index})"
+                >
+                    🗑️ Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+        `
+    ).join("");
+
+
+    updateStats();
 
 }
 
 
-/* ==================================
-   LOCATION
-================================== */
+/* =====================================
+   STATS
+===================================== */
 
-function openLocation(){
+function updateStats(){
 
     document
-    .getElementById("overlay")
+    .getElementById("statProducts")
+    .innerText =
+        products.length;
+
+
+    document
+    .getElementById("statIndian")
+    .innerText =
+        products.filter(
+            p =>
+                p.region.toLowerCase()
+                .includes("india") ||
+                [
+                    "nashik",
+                    "maharashtra",
+                    "karnataka",
+                    "pune"
+                ].some(
+                    x =>
+                        p.region
+                        .toLowerCase()
+                        .includes(x)
+                )
+        ).length;
+
+
+    document
+    .getElementById("statRed")
+    .innerText =
+        products.filter(
+            p => p.type === "Red"
+        ).length;
+
+
+    document
+    .getElementById("statWholesalers")
+    .innerText =
+        wholesalers.length;
+
+}
+
+
+/* =====================================
+   OPEN ADD MODAL
+===================================== */
+
+function openProductModal(){
+
+    document
+    .getElementById("modalTitle")
+    .innerText =
+        "Add Wine";
+
+
+    document
+    .getElementById("editIndex")
+    .value = "";
+
+
+    clearForm();
+
+
+    document
+    .getElementById("productModal")
     .classList.add("show");
 
+}
+
+
+/* =====================================
+   EDIT PRODUCT
+===================================== */
+
+function editProduct(index){
+
+    const product =
+        products[index];
+
 
     document
-    .getElementById("cartDrawer")
-    .style.display = "none";
+    .getElementById("modalTitle")
+    .innerText =
+        "Edit Wine";
 
 
     document
-    .getElementById("modal")
-    .style.display = "grid";
+    .getElementById("editIndex")
+    .value =
+        index;
 
 
     document
-    .getElementById("modalBox")
-    .innerHTML = `
+    .getElementById("wineName")
+    .value =
+        product.name;
 
-        <button
-            class="close"
-            onclick="closeOverlay()"
-        >
-            ×
-        </button>
 
-        <div class="hero-small">
-            LOCATION
-        </div>
+    document
+    .getElementById("wineType")
+    .value =
+        product.type;
 
-        <h2>
-            Select your location
-        </h2>
 
-        <input
-            class="field"
-            id="locationInput"
-            placeholder="Enter city or area"
-        >
+    document
+    .getElementById("winePrice")
+    .value =
+        product.price;
 
-        <button
-            class="modal-button"
-            onclick="setLocation()"
-        >
-            Select Location
-        </button>
 
-        <p style="
-            margin-top:15px;
-            color:#777;
-            font-size:13px;
-        ">
-            Demo location selector.
-        </p>
+    document
+    .getElementById("wineGrape")
+    .value =
+        product.grape;
 
-    `;
+
+    document
+    .getElementById("wineRegion")
+    .value =
+        product.region;
+
+
+    document
+    .getElementById("wineImage")
+    .value =
+        product.image;
+
+
+    document
+    .getElementById("wineRating")
+    .value =
+        product.rating;
+
+
+    document
+    .getElementById("productModal")
+    .classList.add("show");
 
 }
 
 
-function setLocation(){
+/* =====================================
+   SAVE PRODUCT
+===================================== */
 
-    const value =
+function saveProduct(){
+
+    const name =
         document
-        .getElementById("locationInput")
+        .getElementById("wineName")
         .value
         .trim();
 
 
-    if(value){
+    const type =
+        document
+        .getElementById("wineType")
+        .value;
 
-        alert(
-            "Location selected: " +
-            value
+
+    const price =
+        Number(
+            document
+            .getElementById("winePrice")
+            .value
         );
 
-    }else{
+
+    const grape =
+        document
+        .getElementById("wineGrape")
+        .value
+        .trim();
+
+
+    const region =
+        document
+        .getElementById("wineRegion")
+        .value
+        .trim();
+
+
+    const image =
+        document
+        .getElementById("wineImage")
+        .value
+        .trim();
+
+
+    const rating =
+        document
+        .getElementById("wineRating")
+        .value;
+
+
+    if(
+        !name ||
+        !price ||
+        !grape ||
+        !region ||
+        !image
+    ){
 
         alert(
-            "Please enter a location."
+            "Please fill all product fields."
         );
 
         return;
@@ -2565,242 +2086,200 @@ function setLocation(){
     }
 
 
-    closeOverlay();
-
-}
-
-
-/* ==================================
-   ACCOUNT
-================================== */
-
-function openAccount(){
-
-    document
-    .getElementById("overlay")
-    .classList.add("show");
+    const index =
+        document
+        .getElementById("editIndex")
+        .value;
 
 
-    document
-    .getElementById("cartDrawer")
-    .style.display = "none";
+    const product = {
+
+        name,
+        type,
+        price,
+        grape,
+        region,
+        image,
+        rating
+
+    };
 
 
-    document
-    .getElementById("modal")
-    .style.display = "grid";
+    if(index === ""){
+
+        products.push(product);
+
+    }else{
+
+        products[Number(index)] =
+            product;
+
+    }
 
 
-    document
-    .getElementById("modalBox")
-    .innerHTML = `
+    saveData();
 
-        <button
-            class="close"
-            onclick="closeOverlay()"
-        >
-            ×
-        </button>
+    renderProducts();
 
-        <div class="hero-small">
-            ACCOUNT
-        </div>
+    renderAdmin();
 
-        <h2>
-            Welcome back
-        </h2>
+    closeProductModal();
 
-        <input
-            class="field"
-            placeholder="Email"
-        >
-
-        <input
-            class="field"
-            type="password"
-            placeholder="Password"
-        >
-
-        <button
-            class="modal-button"
-            onclick="demoLogin()"
-        >
-            Sign In — Demo
-        </button>
-
-        <hr style="
-            margin:25px 0;
-            border:0;
-            border-top:1px solid #eee;
-        ">
-
-        <h3>
-            Create account
-        </h3>
-
-        <input
-            class="field"
-            placeholder="Full name"
-        >
-
-        <input
-            class="field"
-            placeholder="Email"
-        >
-
-        <button
-            class="modal-button"
-            onclick="demoSignup()"
-        >
-            Create Account — Demo
-        </button>
-
-    `;
-
-}
-
-
-function demoLogin(){
 
     alert(
-        "Demo sign-in only."
+        "Product saved successfully."
     );
 
 }
 
 
-function demoSignup(){
+/* =====================================
+   DELETE
+===================================== */
 
-    alert(
-        "Demo account creation only."
-    );
+function deleteProduct(index){
 
-}
-
-
-/* ==================================
-   PAYMENT DEMO
-================================== */
-
-function showDemoPayment(){
-
-    document
-    .getElementById("cartDrawer")
-    .style.display = "none";
+    const product =
+        products[index];
 
 
-    document
-    .getElementById("modal")
-    .style.display = "grid";
+    const confirmed =
+        confirm(
+            'Remove "' +
+            product.name +
+            '" from the catalogue?'
+        );
 
 
-    document
-    .getElementById("modalBox")
-    .innerHTML = `
+    if(!confirmed){
+        return;
+    }
 
-        <button
-            class="close"
-            onclick="closeOverlay()"
-        >
-            ×
-        </button>
 
-        <div class="hero-small">
-            PAYMENT DEMO
-        </div>
+    products.splice(index,1);
 
-        <h2>
-            Checkout Preview
-        </h2>
 
-        <input
-            class="field"
-            placeholder="Card number"
-        >
+    saveData();
 
-        <div style="
-            display:flex;
-            gap:8px;
-        ">
+    renderProducts();
 
-            <input
-                class="field"
-                placeholder="MM / YY"
-            >
-
-            <input
-                class="field"
-                placeholder="CVV"
-            >
-
-        </div>
-
-        <button
-            class="modal-button"
-            onclick="paymentDemo()"
-        >
-            Continue — Demo
-        </button>
-
-        <p style="
-            color:#777;
-            font-size:12px;
-            margin-top:15px;
-            line-height:1.5;
-        ">
-            This is a visual demonstration only.
-            No payment or transaction is processed.
-        </p>
-
-    `;
+    renderAdmin();
 
 }
 
 
-function paymentDemo(){
+/* =====================================
+   CLEAR FORM
+===================================== */
 
-    alert(
-        "Demo only — no payment was processed."
-    );
+function clearForm(){
+
+    document
+    .getElementById("wineName")
+    .value = "";
+
+
+    document
+    .getElementById("winePrice")
+    .value = "";
+
+
+    document
+    .getElementById("wineGrape")
+    .value = "";
+
+
+    document
+    .getElementById("wineRegion")
+    .value = "";
+
+
+    document
+    .getElementById("wineImage")
+    .value = "";
 
 }
 
 
-/* ==================================
-   CLOSE
-================================== */
+/* =====================================
+   CLOSE MODAL
+===================================== */
 
-function closeOverlay(){
+function closeProductModal(){
 
     document
-    .getElementById("overlay")
+    .getElementById("productModal")
     .classList.remove("show");
 
 }
 
 
-/* ==================================
-   SCROLL
-================================== */
+/* =====================================
+   WHOLESALERS
+===================================== */
 
-function scrollToProducts(){
+function renderWholesalers(){
 
     document
-    .getElementById("productsSection")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
+    .getElementById("wholesalerList")
+    .innerHTML =
+
+        wholesalers.map(
+            wholesaler => `
+
+            <div class="wholesaler">
+
+                <h3>
+                    ${wholesaler.name}
+                </h3>
+
+                <p>
+
+                    📍 ${wholesaler.city}
+
+                    <br>
+
+                    ☎ ${wholesaler.phone}
+
+                </p>
+
+                <span class="wholesaler-status">
+                    ● ${wholesaler.status}
+                </span>
+
+            </div>
+
+            `
+        ).join("");
 
 }
 
 
-/* ==================================
-   INITIAL LOAD
-================================== */
+/* =====================================
+   VIEW MESSAGE
+===================================== */
+
+function catalogueMessage(name){
+
+    alert(
+        name +
+        " selected from catalogue."
+    );
+
+}
+
+
+/* =====================================
+   INITIALIZE
+===================================== */
 
 renderProducts();
 
-updateCartCount();
+renderAdmin();
+
+renderWholesalers();
+
+updateStats();
 
 </script>
 
